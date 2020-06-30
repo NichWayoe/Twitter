@@ -51,13 +51,14 @@ static NSString * const consumerSecret =@"uCDQgYivwUJcQyiJdo5qB7gVtbR8CHMIo8bElU
     return self;
 }
 
-- (void)getHomeTimelineWithCompletion:(void(^)(NSMutableArray *tweets, NSError *error))completion {
+- (void)getHomeTimelineWithCompletion:(void(^)(NSMutableArray *tweets, NSError *error))completion
+{
    [self GET:@"1.1/statuses/home_timeline.json"
    parameters:nil progress:nil
     success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
-       // Success
        NSMutableArray *tweets  = [tweet tweetsWithArray:tweetDictionaries];
        completion(tweets, nil);
+       
    }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        // There was a problem

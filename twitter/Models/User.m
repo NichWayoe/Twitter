@@ -9,13 +9,17 @@
 #import "User.h"
 
 @implementation User
--(instancetype)initWithDictionary:(NSDictionary *)dictionary{
-self = [super init];
-if (self){
-    self.name = dictionary[@"name"];
-    self.ScreenName = dictionary[@"screen_name"];
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    
+    if (self){
+        self.name = dictionary[@"name"];
+       self.ScreenName = dictionary[@"screen_name"];
+    }
+    return self;
+    
 }
-    return self;}
 
 
 

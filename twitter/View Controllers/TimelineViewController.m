@@ -13,60 +13,65 @@
 #import "User.h"
 
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
-@property(nonatomic, strong) NSMutableArray *Tweets;
+@property(nonatomic, strong) NSMutableArray *tweetsArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation TimelineViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
     [self getTweets];
+
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-   }
+}
 
--(void) getTweets{
-    // Get timeline
+-(void) getTweets
+{
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSMutableArray *tweets, NSError *error) {
         if (tweets) {
-            self.Tweets = tweets;
+            self.tweetsArray = tweets;
             [self.refreshControl endRefreshing];
             }
         else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
-        
         [self.tableView reloadData];
-       
     }];
     
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell"];
-        tweet *tweety = self.Tweets[indexPath.row];
-    cell.namelabel.text=tweety.user.name;
-    cell.userNameLabel.text = tweety.user.ScreenName;
-    NSLog(@"%@",tweety.user.ScreenName);
-    cell.tweetContentlabel.text =tweety.text;
-    cell.retweetLabel.text = [NSString stringWithFormat:@"%i",tweety.retweetCount];
-    cell.likesLabel.text = [NSString stringWithFormat:@"%i",tweety.favoriteCount];
-    cell.timeLabel.text = tweety.createdAtString;
-        NSLog(@"rrr");
-        return cell;
-    }
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.Tweets.count;
+    tweet *currentTweet = self.tweetsArray[indexPath.row];
+    
+    cell.namelabel.text= currentTweet.user.name;
+    cell.userNameLabel.text = currentTweet.user.ScreenName;
+    cell.tweetContentlabel.text = currentTweet.text;
+    cell.retweetLabel.text = [NSString stringWithFormat:@"%i",currentTweet.retweetCount];
+    cell.likesLabel.text = [NSString stringWithFormat:@"%i",currentTweet.favoriteCount];
+    cell.timeLabel.text = currentTweet.createdAtString;
+    
+    return cell;
+}
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.tweetsArray.count;
 }
 
 @end
