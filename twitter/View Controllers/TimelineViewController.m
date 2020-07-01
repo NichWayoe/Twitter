@@ -8,11 +8,12 @@
 
 #import "TimelineViewController.h"
 #import "APIManager.h"
+#import "ComposeViewController.h"
 #import "TweetCell.h"
 #import "tweet.h"
 #import "User.h"
 
-@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) NSMutableArray *tweetsArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -73,5 +74,16 @@
 {
     return self.tweetsArray.count;
 }
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.delegate = self;
+}
+-(void)didTweet:(tweet *)tweet
+{
+    
+    [self.tweetsArray insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+    
+}
 @end
