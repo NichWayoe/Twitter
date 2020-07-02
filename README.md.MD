@@ -54,7 +54,7 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [Recordit](http://recordit).
+GIF created with [Recordit](https://github.com/NichWayoe/Twitter/edit/master/README.md.MD)
 
 ## Notes
 
