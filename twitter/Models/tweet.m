@@ -23,9 +23,12 @@
     }
         self.tweetID = dictionary[@"id_str"];
         self.text = dictionary[@"text"];
+        self.
         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.isLiked = [dictionary[@"favorited"] boolValue];
         self.retweetCount = [dictionary[@"retweet_count"] intValue];
+        self.commentsCount = [dictionary[@"reply_count"] intValue];
+        NSLog(@"%@",dictionary[@"reply_count"]);
         self.isRetweeted = [dictionary[@"retweeted"] boolValue];
         NSDictionary *user = dictionary[@"user"];
         self.user = [[User alloc] initWithDictionary:user];

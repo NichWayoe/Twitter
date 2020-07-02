@@ -9,6 +9,7 @@
 #import "tweetDetailViewController.h"
 #import "tweet.h"
 #import "UIImageView+AFNetworking.h"
+#import "APIManager.h"
 @interface tweetDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *profilePhotoView;
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *tweetContentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *likedButton;
+@property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 
 @end
 
@@ -33,9 +36,9 @@
     [self.profilePhotoView setImageWithURL:self.tappedTweet.user.profilePhotoURL];
     self.retweetButton.selected = self.tappedTweet.isRetweeted;
     self.likedButton.selected = self.tappedTweet.isLiked;
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%i",self.tappedTweet.favoriteCount];
+    self.retweetCountLabel.text = [NSString stringWithFormat:@"%i",self.tappedTweet.retweetCount];
+    
 }
-
-
-
 
 @end

@@ -85,6 +85,7 @@
     cell.likeButton.selected=cell.currentTweet.isLiked;
     [cell.profilePhotoView setImageWithURL:cell.currentTweet.user.profilePhotoURL];
     cell.timeLabel.text = cell.currentTweet.createdAtString;
+    cell.commentCountLabel.text =[NSString stringWithFormat:@"%i",cell.currentTweet.commentsCount];
     return cell;
 }
 
