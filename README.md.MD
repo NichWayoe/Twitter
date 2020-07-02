@@ -1,24 +1,24 @@
-# Project 3 - *Name of App Here*
+# Project 3 - *Twitter*
 
-**Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
+**TwitterDemo** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: **16** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [ ] User sees app icon in home screen and styled launch screen
-- [ ] User can sign in using OAuth login flow
-- [ ] User can Logout
-- [ ] User can view last 20 tweets from their home timeline
-- [ ] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
-- [ ] User can pull to refresh.
-- [ ] User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet.
-- [ ] User can compose a new tweet by tapping on a compose button.
-- [ ] Using AutoLayout, the Tweet cell should adjust its layout for iPhone 11, Pro and SE device sizes as well as accommodate device rotation.
-- [ ] User should display the relative timestamp for each tweet "8m", "7h"
-- [ ] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [x] User sees app icon in home screen and styled launch screen
+- [x] User can sign in using OAuth login flow
+- [x] User can Logout
+- [x] User can view last 20 tweets from their home timeline
+- [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
+- [x] User can pull to refresh.
+- [x] User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet.
+- [x] User can compose a new tweet by tapping on a compose button.
+- [x] Using AutoLayout, the Tweet cell should adjust its layout for iPhone 11, Pro and SE device sizes as well as accommodate device rotation.
+- [x] User should display the relative timestamp for each tweet "8m", "7h"
+- [x] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
 
 The following **stretch** features are implemented:
 
@@ -26,7 +26,7 @@ The following **stretch** features are implemented:
   - Contains the user header view: picture and tagline
   - Contains a section with the users basic stats: # tweets, # following, # followers
   - [ ] Profile view should include that user's timeline
-- [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count. Refer to [[this guide|unretweeting]] for help on implementing unretweeting.
+- [x] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count. Refer to [[this guide|unretweeting]] for help on implementing unretweeting.
 - [ ] Links in tweets are clickable.
 - [ ] User can tap the profile image in any tweet to see another user's profile
   - Contains the user header view: picture and tagline
@@ -46,8 +46,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1.Autolayout
+2.Delegates and Blocks
 
 ## Video Walkthrough
 
@@ -55,21 +55,24 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [LiceCap](http://recordit).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+1. Had a struggle with AutoLayout Initially
+2. Getting newly composed tweets to show up the on the screen
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
+- DateTools
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2020] [nwayoe]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
