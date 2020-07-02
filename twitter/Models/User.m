@@ -9,19 +9,17 @@
 #import "User.h"
 
 @implementation User
--(instancetype)initWithDictionary:(NSDictionary *)dictionary
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     self = [super init];
-    
-    if (self){
+    if (self)
+    {
         self.name = dictionary[@"name"];
-       self.ScreenName = dictionary[@"screen_name"];
+        self.screenName = dictionary[@"screen_name"];
+        NSString *url = [dictionary[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        NSLog(@"%@",url);
+        self.profilePhotoURL = [NSURL URLWithString:url];
     }
     return self;
-    
 }
-
-
-
-
 @end
