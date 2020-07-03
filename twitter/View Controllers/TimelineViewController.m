@@ -33,6 +33,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    
     [self getTweets];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -109,6 +110,8 @@
         tweet *currentTweet = self.tweetsArray[indexPath.row];
         tweetDetailViewController *tweetDetailViewControllera =[segue destinationViewController];
         tweetDetailViewControllera.tappedTweet= currentTweet;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
     }
 }
 

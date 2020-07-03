@@ -38,7 +38,83 @@
     self.likedButton.selected = self.tappedTweet.isLiked;
     self.likeCountLabel.text = [NSString stringWithFormat:@"%i",self.tappedTweet.favoriteCount];
     self.retweetCountLabel.text = [NSString stringWithFormat:@"%i",self.tappedTweet.retweetCount];
+    self.profilePhotoView.layer.cornerRadius=25;
+    self.profilePhotoView.layer.masksToBounds=YES;
     
+}
+- (IBAction)onTapLike:(id)sender {
+    if (self.likedButton.isSelected)
+    {
+        self.tappedTweet.favoriteCount -= 1;
+        self.likedButton.selected=NO;
+        self.tappedTweet.isLiked= NO;
+        [APIManager.shared unlike:self.tappedTweet completion:^(tweet *tweety, NSError *error)
+          {
+             if(error){
+                 NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+           }     else{
+               NSLog(@"Successfully favorited the following Tweet: %@",self.tappedTweet.text);
+            }
+        }];
+
+    }
+    else
+    {
+        self.tappedTweet.favoriteCount += 1;
+        self.likedButton.selected=YES;
+        self.tappedTweet.isLiked = YES;
+        [APIManager.shared like:self.tappedTweet completion:^(tweet *tweety, NSError *error)
+          {
+             if(error){
+                 NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+           }     else{
+               NSLog(@"Successfully favorited the following Tweet: %@",self.tappedTweet.text);
+            }
+        }];
+    }
+    [self updateCell] ;
+    
+}
+- (IBAction)onTapRetweet:(id)sender {
+    if (self.retweetButton.isSelected)
+    {
+        self.tappedTweet.retweetCount -= 1;
+        self.retweetButton.selected=NO;
+        self.tappedTweet.isRetweeted = NO;
+        [APIManager.shared unretweet:self.tappedTweet completion:^(tweet *tweety, NSError *error)
+        {
+            if(error)
+            {
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+             }
+            else
+            {
+                NSLog(@"Successfully favorited the following Tweet: %@",self.tappedTweet.text);
+            }
+          }];
+      }
+      else
+      {
+          self.tappedTweet.retweetCount += 1;
+          self.retweetButton.selected=YES;
+          self.tappedTweet.isRetweeted = YES;
+          [APIManager.shared retweet:self.tappedTweet completion:^(tweet *tweety, NSError *error)
+            {
+               if(error){
+                   NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+             }     else{
+                 NSLog(@"Successfully favorited the following Tweet: %@",self.tappedTweet.text);
+              }
+          }];
+          
+      }
+      [self updateCell] ;
+    
+}
+- (void) updateCell
+{
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%i",self.tappedTweet.favoriteCount];
+    self.retweetCountLabel.text = [NSString stringWithFormat:@"%i",self.tappedTweet.retweetCount];
 }
 
 @end

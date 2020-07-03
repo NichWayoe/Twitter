@@ -15,7 +15,7 @@
     if (self)
     {
         self.name = dictionary[@"name"];
-        self.screenName = dictionary[@"screen_name"];
+        self.screenName = [@"@" stringByAppendingString: dictionary[@"screen_name"]];
         NSString *url = [dictionary[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         NSLog(@"%@",url);
         self.profilePhotoURL = [NSURL URLWithString:url];
