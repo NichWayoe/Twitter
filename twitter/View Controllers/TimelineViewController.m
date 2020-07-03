@@ -33,6 +33,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    
     [self getTweets];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -85,6 +86,7 @@
     cell.likeButton.selected=cell.currentTweet.isLiked;
     [cell.profilePhotoView setImageWithURL:cell.currentTweet.user.profilePhotoURL];
     cell.timeLabel.text = cell.currentTweet.createdAtString;
+    cell.commentCountLabel.text =[NSString stringWithFormat:@"%i",cell.currentTweet.commentsCount];
     return cell;
 }
 
@@ -108,6 +110,8 @@
         tweet *currentTweet = self.tweetsArray[indexPath.row];
         tweetDetailViewController *tweetDetailViewControllera =[segue destinationViewController];
         tweetDetailViewControllera.tappedTweet= currentTweet;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
     }
 }
 
